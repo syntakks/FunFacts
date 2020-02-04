@@ -15,11 +15,13 @@ class ViewController: UIViewController {
     private var count = 0;
     
     let factProvider = FactProvider()
+    let colorProvider = ColorProvider()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        funFactLabel.text = factProvider.facts[0]
+        funFactLabel.text = factProvider.getRandomFact()
+        setThemeColor()
     }
     
     
@@ -28,7 +30,14 @@ class ViewController: UIViewController {
         if (count > factProvider.facts.count - 1) {
             count = 0
         }
-        funFactLabel.text = factProvider.facts[count]
+        funFactLabel.text = factProvider.getRandomFact()
+        setThemeColor()
+    }
+    
+    func setThemeColor() {
+        let color = colorProvider.getRandomColor()
+        view.backgroundColor = color
+        showFactButton.tintColor = color
     }
     
 
